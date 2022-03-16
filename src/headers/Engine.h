@@ -7,6 +7,7 @@ class Engine
 		sf::RenderWindow window;
 		sf::Color bgColor;
 		sf::Color snakeColor;
+		sf::View view;
 		
 		void input();
 		void update(float interval);
