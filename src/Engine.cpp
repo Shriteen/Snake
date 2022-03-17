@@ -15,11 +15,15 @@ Engine::Engine():
 void Engine::start()
 {
     sf::Clock clock;
+    draw();
 	while(window.isOpen())
     {
         sf::Time interval=clock.restart();
         
         input();
+        
+        while((clock.getElapsedTime()).asSeconds() < 1);
+        
         update(interval.asSeconds());
         draw();
     }
