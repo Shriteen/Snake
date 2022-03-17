@@ -18,13 +18,16 @@ void Engine::start()
     draw();
 	while(window.isOpen())
     {
-        sf::Time interval=clock.restart();
-        
         input();
         
-        while((clock.getElapsedTime()).asSeconds() < 1);
+        sf::Time interval=clock.getElapsedTime();
         
-        update(interval.asSeconds());
+        if(interval.asSeconds() > 1)
+        {
+            update(interval.asSeconds());
+            clock.restart();
+        }
+        
         draw();
     }
 }
