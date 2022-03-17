@@ -6,7 +6,7 @@ void Engine::draw()
     
     window.clear(bgColor);
         
-   snake.draw(window);
+    snake.draw(window);
     
     
     window.display();
