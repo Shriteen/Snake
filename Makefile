@@ -14,10 +14,10 @@ Pixel.o: Pixel.h
 Snake.o: Snake.h
 
 Engine.h: Snake.h
-	touch Engine.h
+	touch src/headers/Engine.h
 
 Snake.h: Pixel.h
-	touch Snake.h
+	touch src/headers/Snake.h
 
 
 %.o: %.cpp
