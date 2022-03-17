@@ -11,8 +11,13 @@ Pixel::Pixel(int x,int y):
 
 void Pixel::draw(sf::RenderWindow &window)
 {
-    square.setPosition(position);
+    square.setPosition(sf::Vector2f(position));
     window.draw(square);
+}
+
+sf::Vector2i Pixel::getPosition()
+{
+    return position;
 }
 
 HeadPixel::HeadPixel(int x,int y):

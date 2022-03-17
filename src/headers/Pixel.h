@@ -5,12 +5,13 @@ class Pixel
 {
     protected:
         sf::RectangleShape square;
-        sf::Vector2f position;
+        sf::Vector2i position;
     public:
         static const int size=25;
         
         Pixel(int x,int y);
         void draw(sf::RenderWindow &window);
+        sf::Vector2i getPosition();
         
 };
 

@@ -2,7 +2,8 @@
 
 Snake::Snake(sf::Color snakeColor,
              sf::Vector2i initPos):
-    snakeColor(snakeColor)
+    snakeColor(snakeColor),
+    direction(Direction::up)
 {
     Pixel *ptr = new Pixel(initPos.x,initPos.y);
     queue.push_front(ptr);
@@ -27,4 +28,32 @@ void Snake::draw(sf::RenderWindow &window)
     {
         queue[i]->draw(window);
     }
+}
+
+void Snake::update(float interval)
+{
+    Pixel *ptr;
+    sf::Vector2i initPos=queue[0]->getPosition();
+    
+    switch(direction)
+    {
+        case Direction::up :
+            ptr = new Pixel(initPos.x,initPos.y-Pixel::size);
+            break;
+        case Direction::down :
+            ptr = new Pixel(initPos.x,initPos.y+Pixel::size);
+            break;
+        case Direction::left :
+            ptr = new Pixel(initPos.x-Pixel::size,initPos.y);
+            break;    
+        case Direction::right :
+            ptr = new Pixel(initPos.x+Pixel::size,initPos.y);
+            break;
+    }
+    if(ptr!=nullptr)
+    {
+        queue.push_front(ptr);
+        queue.pop_back();
+    }
+    
 }
