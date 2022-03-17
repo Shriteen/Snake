@@ -17,6 +17,7 @@ class Snake
         virtual ~Snake();
         void draw(sf::RenderWindow &window);
         void update(float interval);
+        void changeDirection(Direction direction);
         
     private:
         Direction direction;

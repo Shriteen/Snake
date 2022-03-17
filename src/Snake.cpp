@@ -57,3 +57,13 @@ void Snake::update(float interval)
     }
     
 }
+
+void Snake::changeDirection(Direction direction)
+{
+    if((this->direction==Direction::up && direction==Direction::down) ||
+       (this->direction==Direction::down && direction==Direction::up) ||
+       (this->direction==Direction::left && direction==Direction::right) ||
+       (this->direction==Direction::right && direction==Direction::left) )
+            return;
+    this->direction=direction;
+}
