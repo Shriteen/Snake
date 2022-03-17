@@ -3,7 +3,9 @@
 Engine::Engine():
     window(sf::VideoMode(1080,720),"Snake"),
 	bgColor(sf::Color::White),
-	snakeColor(sf::Color::Black)
+	snakeColor(sf::Color::Black),
+    snake(snakeColor,
+          sf::Vector2i(1080/2,720/2))
 {
 	window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Snake.h"
 
 class Engine
 {
@@ -8,6 +9,8 @@ class Engine
 		sf::Color bgColor;
 		sf::Color snakeColor;
 		sf::View view;
+		
+		Snake snake;
 		
 		void input();
 		void update(float interval);
