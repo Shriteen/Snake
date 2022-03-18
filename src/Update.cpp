@@ -1,7 +1,16 @@
 #include "headers/Engine.h"
+#include <iostream>
 
 void Engine::update(float interval)
-{    
+{   
     snake.update(interval);
     
+    sf::FloatRect headHitBox=snake.getHeadBounds();
+    if( !(border.getGlobalBounds().contains( headHitBox.left , headHitBox.top ) &&
+          border.getGlobalBounds().contains( headHitBox.left+headHitBox.width , headHitBox.top ) &&
+          border.getGlobalBounds().contains( headHitBox.left , headHitBox.top+headHitBox.height ) &&
+          border.getGlobalBounds().contains( headHitBox.left+headHitBox.width , headHitBox.top+headHitBox.height )) )
+    {
+        snake.setAliveStatus(false);
+    }
 }

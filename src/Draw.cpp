@@ -5,9 +5,9 @@ void Engine::draw()
     window.setView(view);
     
     window.clear(bgColor);
-        
-    snake.draw(window);
     
+    window.draw(border);    
+    snake.draw(window);
     
     window.display();
 }

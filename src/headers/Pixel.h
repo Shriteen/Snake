@@ -11,7 +11,9 @@ class Pixel
         
         Pixel(int x,int y);
         void draw(sf::RenderWindow &window);
+        void update();
         sf::Vector2i getPosition();
+        sf::FloatRect getBounds();
         
 };
 

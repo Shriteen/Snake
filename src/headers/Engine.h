@@ -7,9 +7,10 @@ class Engine
 	private:
 		sf::RenderWindow window;
 		sf::Color bgColor;
+		sf::Color borderColor;
 		sf::Color snakeColor;
 		sf::View view;
-		
+		sf::RectangleShape border;
 		Snake snake;
 		
 		void input();

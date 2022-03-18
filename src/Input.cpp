@@ -29,25 +29,28 @@ void Engine::input()
                 break;
             
             case sf::Event::KeyReleased :
-                if(event.key.code == sf::Keyboard::Up ||
-                   event.key.code == sf::Keyboard::W)
+                if(snake.isAlive())
                 {
-                    snake.changeDirection(Snake::Direction::up);
-                }
-                else if(event.key.code == sf::Keyboard::Down ||
-                        event.key.code == sf::Keyboard::S)
-                {
-                    snake.changeDirection(Snake::Direction::down);
-                }
-                else if(event.key.code == sf::Keyboard::Left ||
-                        event.key.code == sf::Keyboard::A)
-                {
-                    snake.changeDirection(Snake::Direction::left);
-                }
-                else if(event.key.code == sf::Keyboard::Right ||
-                        event.key.code == sf::Keyboard::D)
-                {
-                    snake.changeDirection(Snake::Direction::right);
+                    if(event.key.code == sf::Keyboard::Up ||
+                       event.key.code == sf::Keyboard::W)
+                    {
+                        snake.changeDirection(Snake::Direction::up);
+                    }
+                    else if(event.key.code == sf::Keyboard::Down ||
+                            event.key.code == sf::Keyboard::S)
+                    {
+                        snake.changeDirection(Snake::Direction::down);
+                    }
+                    else if(event.key.code == sf::Keyboard::Left ||
+                            event.key.code == sf::Keyboard::A)
+                    {
+                        snake.changeDirection(Snake::Direction::left);
+                    }
+                    else if(event.key.code == sf::Keyboard::Right ||
+                            event.key.code == sf::Keyboard::D)
+                    {
+                        snake.changeDirection(Snake::Direction::right);
+                    }
                 }
                 break;
         }

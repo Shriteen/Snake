@@ -8,6 +8,7 @@ class Snake
     private:
         sf::Color snakeColor;
         std::deque<Pixel*> queue;
+        bool alive;
         
     public:
         enum class Direction{left,right,up,down};
@@ -18,7 +19,9 @@ class Snake
         void draw(sf::RenderWindow &window);
         void update(float interval);
         void changeDirection(Direction direction);
-        
+        bool isAlive();
+        sf::FloatRect getHeadBounds();
+        void setAliveStatus(bool status);
     private:
         Direction direction;
 };
