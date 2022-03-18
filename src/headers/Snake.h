@@ -22,6 +22,7 @@ class Snake
         bool isAlive();
         sf::FloatRect getHeadBounds();
         void setAliveStatus(bool status);
+        void operator ++ (int);
     private:
         Direction direction;
 };

@@ -92,3 +92,31 @@ void Snake::setAliveStatus(bool status)
 {
     this->alive=status;
 }
+
+void Snake::operator ++ (int)
+{
+    Pixel *ptr;
+    sf::Vector2i initPos=queue[0]->getPosition();
+    
+    switch(direction)
+    {
+        case Direction::up :
+            ptr = new Pixel(initPos.x,initPos.y-Pixel::size,snakeColor);
+            break;
+        case Direction::down :
+            ptr = new Pixel(initPos.x,initPos.y+Pixel::size,snakeColor);
+            break;
+        case Direction::left :
+            ptr = new Pixel(initPos.x-Pixel::size,initPos.y,snakeColor);
+            break;    
+        case Direction::right :
+            ptr = new Pixel(initPos.x+Pixel::size,initPos.y,snakeColor);
+            break;
+    }
+    if(ptr!=nullptr)
+    {
+        queue.push_front(ptr);
+        queue[0]->update();
+    }
+    
+}

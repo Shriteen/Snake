@@ -18,6 +18,7 @@ void Engine::update(float interval)
     {
         delete food;
         food =new Food(border.getGlobalBounds(),foodColor);
+        snake++;
     }
     food->update();
 }
