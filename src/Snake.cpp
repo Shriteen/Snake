@@ -23,13 +23,13 @@ Snake::~Snake()
 }
 
 void Snake::draw(sf::RenderWindow &window)
-{
-    ((HeadPixel*) queue[0] )->draw(window);
-    
+{    
     for(int i=1;i<queue.size();i++)
     {
         queue[i]->draw(window);
     }
+    
+    ((HeadPixel*) queue[0] )->draw(window);
 }
 
 void Snake::update(float interval)
@@ -64,6 +64,14 @@ void Snake::update(float interval)
     for(int i=0;i<queue.size();i++)
     {
         queue[i]->update();
+    }
+    
+    for(int i=1;i<queue.size();i++)
+    {
+        if(queue[i]->getBounds().intersects(getHeadBounds()))
+        {
+            setAliveStatus(false);
+        }
     }
     
 }
