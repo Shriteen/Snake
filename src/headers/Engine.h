@@ -15,12 +15,13 @@ class Engine
 		sf::RectangleShape border;
 		Snake snake;
 		
-		//Food food;
+		Food *food;
 		
 		void input();
 		void update(float interval);
 		void draw();
 	public:
 		Engine();
+		~Engine();
 		void start();
 };

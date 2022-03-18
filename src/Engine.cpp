@@ -5,6 +5,7 @@ Engine::Engine():
     bgColor(sf::Color::White),
     borderColor(sf::Color::Black),
     snakeColor(sf::Color::Black),
+    foodColor(sf::Color::Red),
     border(sf::Vector2f(1080-(2*Pixel::size),720-(2*Pixel::size))),
     snake(snakeColor,
           sf::Vector2i(1080/2,720/2))
@@ -15,7 +16,15 @@ Engine::Engine():
     border.setOutlineColor(borderColor);
     border.setOutlineThickness(5);
     border.setPosition(Pixel::size,Pixel::size);
+    
+    food=new Food(border.getGlobalBounds(),foodColor);
+    
 
+}
+
+Engine::~Engine()
+{
+    delete food;
 }
 
 void Engine::start()

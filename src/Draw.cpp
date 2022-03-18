@@ -6,8 +6,11 @@ void Engine::draw()
     
     window.clear(bgColor);
     
-    window.draw(border);    
+    window.draw(border);
+    food->draw(window);
     snake.draw(window);
+    
+    
     
     window.display();
 }

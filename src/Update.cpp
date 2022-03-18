@@ -2,7 +2,7 @@
 #include <iostream>
 
 void Engine::update(float interval)
-{   
+{       
     snake.update(interval);
     
     sf::FloatRect headHitBox=snake.getHeadBounds();
@@ -13,4 +13,11 @@ void Engine::update(float interval)
     {
         snake.setAliveStatus(false);
     }
+    
+    if( food->getBounds().intersects(snake.getHeadBounds()) )
+    {
+        delete food;
+        food =new Food(border.getGlobalBounds(),foodColor);
+    }
+    food->update();
 }
