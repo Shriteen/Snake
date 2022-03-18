@@ -1,11 +1,10 @@
 #include "headers/Pixel.h"
 #include<iostream>
-Pixel::Pixel(int x,int y):
+Pixel::Pixel(int x,int y,sf::Color color):
     square(sf::Vector2f(Pixel::size,Pixel::size)),
-    position(x,y)
+    position(x,y),
+    color(color)
 {
-    
-    square.setFillColor(sf::Color::Black);
     
 }
 
@@ -17,6 +16,7 @@ void Pixel::draw(sf::RenderWindow &window)
 void Pixel::update()
 {
     square.setPosition(sf::Vector2f(position));
+    square.setFillColor(color);
 }
 
 sf::Vector2i Pixel::getPosition()
@@ -29,8 +29,8 @@ sf::FloatRect Pixel::getBounds()
     return square.getGlobalBounds();
 }
 
-HeadPixel::HeadPixel(int x,int y):
-    Pixel(x,y)
+HeadPixel::HeadPixel(int x,int y,sf::Color color):
+    Pixel(x,y,color)
 {
     
 }

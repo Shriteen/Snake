@@ -7,9 +7,9 @@ Snake::Snake(sf::Color snakeColor,
     direction(Direction::up),
     alive(true)
 {
-    Pixel *ptr = new Pixel(initPos.x,initPos.y);
+    Pixel *ptr = new Pixel(initPos.x,initPos.y,snakeColor);
     queue.push_front(ptr);
-    ptr = new Pixel(initPos.x,initPos.y-Pixel::size);
+    ptr = new Pixel(initPos.x,initPos.y-Pixel::size,snakeColor);
     queue.push_front(ptr);
 }
 
@@ -43,16 +43,16 @@ void Snake::update(float interval)
     switch(direction)
     {
         case Direction::up :
-            ptr = new Pixel(initPos.x,initPos.y-Pixel::size);
+            ptr = new Pixel(initPos.x,initPos.y-Pixel::size,snakeColor);
             break;
         case Direction::down :
-            ptr = new Pixel(initPos.x,initPos.y+Pixel::size);
+            ptr = new Pixel(initPos.x,initPos.y+Pixel::size,snakeColor);
             break;
         case Direction::left :
-            ptr = new Pixel(initPos.x-Pixel::size,initPos.y);
+            ptr = new Pixel(initPos.x-Pixel::size,initPos.y,snakeColor);
             break;    
         case Direction::right :
-            ptr = new Pixel(initPos.x+Pixel::size,initPos.y);
+            ptr = new Pixel(initPos.x+Pixel::size,initPos.y,snakeColor);
             break;
     }
     if(ptr!=nullptr)
