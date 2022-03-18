@@ -38,7 +38,7 @@ void Engine::start()
         
         sf::Time interval=clock.getElapsedTime();
         
-        if(interval.asSeconds() > 1)
+        if(interval.asSeconds() > 0.5)
         {
             update(interval.asSeconds());
             clock.restart();
