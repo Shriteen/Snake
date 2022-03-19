@@ -10,7 +10,7 @@ class HUD
         float fontSize;
         sf::Color fontColor;
     public:
-        HUD();
+        HUD(sf::Color fontColor);
         void update(Snake &snake);
         void draw(sf::RenderWindow &window);
 };

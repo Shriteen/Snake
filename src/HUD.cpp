@@ -1,14 +1,15 @@
 #include <string>
 #include "headers/HUD.h"
 
-HUD::HUD()
+HUD::HUD(sf::Color fontColor)
 {
     font.loadFromFile("fonts/Coolville.ttf");
     scoreText.setFont(font);
     
-    fontSize=10.0;
-    fontColor=sf::Color::Magenta;
-    scoreText.setPosition(50,50);
+    fontSize=50.0;
+    this->fontColor=fontColor;
+    scoreText.setCharacterSize(fontSize);
+    scoreText.setPosition(25,6);
 }
 
 void HUD::update(Snake &snake)
