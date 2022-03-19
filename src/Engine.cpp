@@ -6,12 +6,15 @@ Engine::Engine():
     borderColor(sf::Color::Black),
     snakeColor(sf::Color::Black),
     foodColor(sf::Color::Red),
+    hudTextColor(sf::Color::Magenta),
     border(sf::Vector2f(1080-(2*Pixel::size),720-(2*Pixel::size))),
+    hud(hudTextColor),
     snake(snakeColor,
           sf::Vector2i(1080/2,720/2))
 {
     window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));
+    hudView.reset(sf::FloatRect(0,0,1080,72));
     
     border.setOutlineColor(borderColor);
     border.setOutlineThickness(5);

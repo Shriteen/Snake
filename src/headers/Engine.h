@@ -12,7 +12,9 @@ class Engine
 		sf::Color borderColor;
 		sf::Color snakeColor;
 		sf::Color foodColor;
+		sf::Color hudTextColor;
 		sf::View view;
+		sf::View hudView;
 		sf::RectangleShape border;
 		Snake snake;
 		Food *food;

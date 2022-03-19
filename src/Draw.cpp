@@ -9,6 +9,9 @@ void Engine::draw()
     window.draw(border);
     food->draw(window);
     snake.draw(window);
+    
+    
+    window.setView(hudView);
     hud.draw(window);
     
     
