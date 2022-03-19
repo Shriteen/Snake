@@ -69,6 +69,16 @@ void Engine::input()
                     playing=!playing;
                 }
                 break;
+            
+            case sf::Event::MouseButtonPressed :
+                int x = event.mouseButton.x;
+                int y = event.mouseButton.y;
+                if(hud.getPauseOrPlayButtonBounds().contains( window.mapPixelToCoords(sf::Vector2i(x,y),hudView ) ))
+                {
+                    playing=!playing;
+                }
+                break;
+                
         }
     }
     

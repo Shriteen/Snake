@@ -9,8 +9,12 @@ class HUD
         sf::Font font;
         float fontSize;
         sf::Color fontColor;
+        sf::Texture pauseTexture;
+        sf::Texture playTexture;
+        sf::Sprite pauseOrPlayButton;
     public:
         HUD(sf::Color fontColor);
-        void update(Snake &snake);
+        void update(Snake &snake,bool playing);
         void draw(sf::RenderWindow &window);
+        sf::FloatRect getPauseOrPlayButtonBounds();
 };
