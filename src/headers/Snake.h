@@ -9,6 +9,7 @@ class Snake
         sf::Color snakeColor;
         std::deque<Pixel*> queue;
         bool alive;
+        int score;
         
     public:
         enum class Direction{left,right,up,down};

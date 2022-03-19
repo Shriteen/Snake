@@ -5,7 +5,8 @@ Snake::Snake(sf::Color snakeColor,
              sf::Vector2i initPos):
     snakeColor(snakeColor),
     direction(Direction::up),
-    alive(true)
+    alive(true),
+    score(0)
 {
     Pixel *ptr = new Pixel(initPos.x,initPos.y,snakeColor);
     queue.push_front(ptr);
@@ -127,4 +128,5 @@ void Snake::operator ++ (int)
         queue[0]->update();
     }
     
+    score++;
 }
