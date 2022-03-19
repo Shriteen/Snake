@@ -21,4 +21,6 @@ void Engine::update(float interval)
         snake++;
     }
     food->update();
+    
+    hud.update(snake);
 }

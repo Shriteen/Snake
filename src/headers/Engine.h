@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Snake.h"
 #include "Food.h"
+#include "HUD.h"
 
 class Engine
 {
@@ -14,8 +15,8 @@ class Engine
 		sf::View view;
 		sf::RectangleShape border;
 		Snake snake;
-		
 		Food *food;
+		HUD hud;
 		
 		void input();
 		void update(float interval);
