@@ -19,6 +19,7 @@ class Engine
 		Snake snake;
 		Food *food;
 		HUD hud;
+		bool playing;
 		
 		void input();
 		void update(float interval);

@@ -37,7 +37,7 @@ void Engine::input()
                 break;
             
             case sf::Event::KeyReleased :
-                if(snake.isAlive())
+                if(snake.isAlive() && playing)
                 {
                     if(event.key.code == sf::Keyboard::Up ||
                        event.key.code == sf::Keyboard::W)
@@ -59,6 +59,14 @@ void Engine::input()
                     {
                         snake.changeDirection(Snake::Direction::right);
                     }
+                }
+                break;
+                
+            case sf::Event::KeyPressed :
+                if(event.key.code == sf::Keyboard::Space ||
+                   event.key.code == sf::Keyboard::Escape )
+                {
+                    playing=!playing;
                 }
                 break;
         }

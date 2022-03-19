@@ -9,6 +9,7 @@ Engine::Engine():
     hudTextColor(sf::Color::Magenta),
     border(sf::Vector2f(1080-(2*Pixel::size),720-(2*Pixel::size))),
     hud(hudTextColor),
+    playing(true),
     snake(snakeColor,
           sf::Vector2i(1080/2,720/2))
 {
@@ -41,7 +42,7 @@ void Engine::start()
         
         sf::Time interval=clock.getElapsedTime();
         
-        if(interval.asSeconds() > 0.5)
+        if(interval.asSeconds() > 0.5 && playing)
         {
             update(interval.asSeconds());
             clock.restart();
