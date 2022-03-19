@@ -24,6 +24,7 @@ class Snake
         sf::FloatRect getHeadBounds();
         void setAliveStatus(bool status);
         void operator ++ (int);
+        int getScore();
     private:
         Direction direction;
 };

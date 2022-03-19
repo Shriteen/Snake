@@ -130,3 +130,8 @@ void Snake::operator ++ (int)
     
     score++;
 }
+
+int Snake::getScore()
+{
+    return score;
+}
