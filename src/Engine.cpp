@@ -30,7 +30,7 @@ Engine::~Engine()
 void Engine::start()
 {
     sf::Clock clock;
-    snake.update(1);
+    update(1);
     draw();
     while(window.isOpen())
     {
