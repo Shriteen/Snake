@@ -1,4 +1,5 @@
 #include "headers/Engine.h"
+#include<iostream>
 
 Engine::Engine():
     window(sf::VideoMode(1080,720),"Snake"),
@@ -11,7 +12,10 @@ Engine::Engine():
     hud(hudTextColor),
     playing(true),
     snake(snakeColor,
-          sf::Vector2i(1080/2,720/2))
+          sf::Vector2i(1080/2,720/2)),
+    menu(std::vector<std::string>{"Start","Exit"},
+         hudTextColor,
+         50)
 {
     window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));
@@ -24,23 +28,6 @@ Engine::Engine():
     food=new Food(border.getGlobalBounds(),foodColor);
     
     
-    font.loadFromFile("fonts/Coolville.ttf");
-    startText.setFont(font);
-    exitText.setFont(font);
-    
-    startText.setString("Start");
-    startText.setFillColor(hudTextColor);
-    startText.setCharacterSize(50);
-    sf::FloatRect startBounds = startText.getGlobalBounds();
-    
-    
-    exitText.setString("Exit");
-    exitText.setFillColor(hudTextColor);
-    exitText.setCharacterSize(50);
-    sf::FloatRect exitBounds = exitText.getGlobalBounds();
-
-    startText.setPosition((1080-startBounds.width)/2.0 , (648-startBounds.height-exitBounds.height - 25)/2.0 );
-    exitText.setPosition((1080-exitBounds.width)/2.0 , (648-exitBounds.height+25)/2.0 );
 }
 
 Engine::~Engine()
@@ -51,7 +38,7 @@ Engine::~Engine()
 void Engine::start()
 {
     adjustViews(window.getSize().x,window.getSize().y);
-    
+
     mainScreen();
     if(!window.isOpen())
         return;
@@ -117,32 +104,34 @@ void Engine::mainScreen()
                 case sf::Event::KeyPressed :
                     if(event.key.code == sf::Keyboard::Enter)
                     {
-                        return;
+                        if(menu.getSelected() == "Start")
+                            return;
+                        else if(menu.getSelected() == "Exit")
+                            window.close();
                     }
                     else if(event.key.code == sf::Keyboard::Escape)
                     {
                         window.close();
                     }
+                    else
+                    {
+                        menu.keyHandle(event);
+                    }
                     break;
                     
                 case sf::Event::MouseButtonPressed :
-                    int x = event.mouseButton.x;
-                    int y = event.mouseButton.y;
-                    if(startText.getGlobalBounds().contains( window.mapPixelToCoords(sf::Vector2i(x,y) ) ))
-                    {
+                    menu.mouseHandle(event,window);
+                    if(menu.getSelected() == "Start")
                         return;
-                    }else if(exitText.getGlobalBounds().contains( window.mapPixelToCoords(sf::Vector2i(x,y) ) ))
-                    {
+                    else if(menu.getSelected() == "Exit")
                         window.close();
-                    }
                     break;
             }
             
         }
         
         window.clear(bgColor);
-        window.draw(startText);
-        window.draw(exitText);
+        menu.draw(window);
         window.display();
     }
 }

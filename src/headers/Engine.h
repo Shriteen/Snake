@@ -3,6 +3,7 @@
 #include "Snake.h"
 #include "Food.h"
 #include "HUD.h"
+#include "Menu.h"
 
 class Engine
 {
@@ -16,14 +17,11 @@ class Engine
 		sf::View view;
 		sf::View hudView;
 		sf::RectangleShape border;
-		sf::Font font;
-		sf::Text startText;
-		sf::Text exitText;
 		Snake snake;
 		Food *food;
 		HUD hud;
 		bool playing;
-		
+		Menu menu;
 		
 		
 		void input();
