@@ -16,14 +16,21 @@ class Engine
 		sf::View view;
 		sf::View hudView;
 		sf::RectangleShape border;
+		sf::Font font;
+		sf::Text startText;
+		sf::Text exitText;
 		Snake snake;
 		Food *food;
 		HUD hud;
 		bool playing;
 		
+		
+		
 		void input();
 		void update(float interval);
 		void draw();
+		void adjustViews(int width,int height);
+		void mainScreen();
 	public:
 		Engine();
 		~Engine();
