@@ -3,15 +3,12 @@
 
 Engine::Engine():
     window(sf::VideoMode(1080,720),"Snake"),
-    bgColor(sf::Color::White),
-    borderColor(sf::Color::Black),
-    snakeColor(sf::Color::Black),
     foodColor(sf::Color::Red),
     hudTextColor(sf::Color::Magenta),
     border(sf::Vector2f(1080-(2*Pixel::size),720-(2*Pixel::size))),
     hud(hudTextColor),
     playing(true),
-    snake(snakeColor,
+    snake(sf::Color::Black,
           sf::Vector2i(1080/2,720/2)),
     menu(std::vector<std::string>{"Start","Exit"},
          hudTextColor,
@@ -21,7 +18,10 @@ Engine::Engine():
     view.reset(sf::FloatRect(0,0,1080,720));
     hudView.reset(sf::FloatRect(0,0,1080,72));
     
+    setColorScheme(colorScheme::light);
+    
     border.setOutlineColor(borderColor);
+    border.setFillColor(sf::Color::Transparent);
     border.setOutlineThickness(5);
     border.setPosition(Pixel::size,Pixel::size);
     
@@ -134,4 +134,22 @@ void Engine::mainScreen()
         menu.draw(window);
         window.display();
     }
+}
+
+void Engine::setColorScheme(colorScheme mode)
+{
+    switch(mode)
+    {
+        case colorScheme::light :
+            bgColor=sf::Color::White;
+            borderColor=sf::Color::Black;
+            snake.setColor(sf::Color::Black);
+            break;
+        case colorScheme::dark :
+            bgColor=sf::Color::Black;
+            borderColor=sf::Color::White;
+            snake.setColor(sf::Color::White);
+            break;
+    }
+    
 }

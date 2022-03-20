@@ -135,3 +135,8 @@ int Snake::getScore()
 {
     return score;
 }
+
+void Snake::setColor(sf::Color color)
+{
+    snakeColor=color;
+}

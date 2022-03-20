@@ -25,6 +25,7 @@ class Snake
         void setAliveStatus(bool status);
         void operator ++ (int);
         int getScore();
+        void setColor(sf::Color color);
     private:
         Direction direction;
 };

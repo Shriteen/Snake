@@ -43,8 +43,10 @@ void HeadPixel::draw(sf::RenderWindow &window)
     eye.setPosition(position.x+(Pixel::size*0.38),
                     position.y+(Pixel::size*0.38));
     
-    eye.setFillColor(sf::Color::White);
-    
+    if(color == sf::Color::White)
+        eye.setFillColor(sf::Color::Black);
+    else if(color == sf::Color::Black)
+        eye.setFillColor(sf::Color::White);
     
     window.draw(eye);
 }

@@ -8,10 +8,11 @@
 class Engine
 {
 	private:
+		enum class colorScheme {light,dark};
+		
 		sf::RenderWindow window;
 		sf::Color bgColor;
 		sf::Color borderColor;
-		sf::Color snakeColor;
 		sf::Color foodColor;
 		sf::Color hudTextColor;
 		sf::View view;
@@ -22,13 +23,14 @@ class Engine
 		HUD hud;
 		bool playing;
 		Menu menu;
-		
+		colorScheme scheme;
 		
 		void input();
 		void update(float interval);
 		void draw();
 		void adjustViews(int width,int height);
 		void mainScreen();
+		void setColorScheme(colorScheme mode);
 	public:
 		Engine();
 		~Engine();
