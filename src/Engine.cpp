@@ -119,6 +119,10 @@ void Engine::mainScreen()
                     {
                         return;
                     }
+                    else if(event.key.code == sf::Keyboard::Escape)
+                    {
+                        window.close();
+                    }
                     break;
                     
                 case sf::Event::MouseButtonPressed :
