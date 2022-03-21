@@ -18,7 +18,7 @@ class Engine
 		sf::View view;
 		sf::View hudView;
 		sf::RectangleShape border;
-		Snake snake;
+		Snake *snake;
 		Food *food;
 		HUD hud;
 		bool playing;

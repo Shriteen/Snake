@@ -8,8 +8,7 @@ Engine::Engine():
     border(sf::Vector2f(1080-(2*Pixel::size),720-(2*Pixel::size))),
     hud(hudTextColor),
     playing(true),
-    snake(sf::Color::Black,
-          sf::Vector2i(1080/2,720/2)),
+    snake(nullptr),
     menu(std::vector<std::string>{"Start","Exit"},
          hudTextColor,
          50)
@@ -32,6 +31,7 @@ Engine::Engine():
 
 Engine::~Engine()
 {
+    delete snake;
     delete food;
 }
 
@@ -42,6 +42,9 @@ void Engine::start()
     mainScreen();
     if(!window.isOpen())
         return;
+    
+    snake=new Snake(((scheme==colorScheme::light)?sf::Color::Black : sf::Color::White),
+                    sf::Vector2i(1080/2,720/2));
     
     sf::Clock clock;    
     update(1);
@@ -138,17 +141,18 @@ void Engine::mainScreen()
 
 void Engine::setColorScheme(colorScheme mode)
 {
+    scheme=mode;
     switch(mode)
     {
         case colorScheme::light :
             bgColor=sf::Color::White;
             borderColor=sf::Color::Black;
-            snake.setColor(sf::Color::Black);
+            //snake->setColor(sf::Color::Black);
             break;
         case colorScheme::dark :
             bgColor=sf::Color::Black;
             borderColor=sf::Color::White;
-            snake.setColor(sf::Color::White);
+            //snake->setColor(sf::Color::White);
             break;
     }
     

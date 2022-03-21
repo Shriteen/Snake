@@ -7,7 +7,7 @@ Snake::Snake(sf::Color snakeColor,
     direction(Direction::up),
     alive(true),
     score(0)
-{
+{    
     Pixel *ptr = new Pixel(initPos.x,initPos.y,snakeColor);
     queue.push_front(ptr);
     ptr = new Pixel(initPos.x,initPos.y-Pixel::size,snakeColor);
