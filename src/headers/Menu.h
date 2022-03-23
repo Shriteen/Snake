@@ -20,5 +20,5 @@ class Menu
 	void draw(sf::RenderWindow &window);
 	std::string getSelected();
 	void keyHandle(sf::Event &event);
-	void mouseHandle(sf::Event &event,sf::RenderWindow &window);
+	bool mouseHandle(sf::Event &event,sf::RenderWindow &window);
 };

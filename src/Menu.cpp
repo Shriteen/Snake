@@ -67,7 +67,7 @@ void Menu::keyHandle(sf::Event &event)
     }
 }
 
-void Menu::mouseHandle(sf::Event &event,sf::RenderWindow &window)
+bool Menu::mouseHandle(sf::Event &event,sf::RenderWindow &window)
 {
     if(event.type == sf::Event::MouseButtonPressed)
     {
@@ -79,8 +79,10 @@ void Menu::mouseHandle(sf::Event &event,sf::RenderWindow &window)
            if(options[i].getGlobalBounds().contains( window.mapPixelToCoords(sf::Vector2i(x,y) ) ))
            {
                selected=i;
+               return true;
            }
            
         }
     }
+    return false;
 }
