@@ -1,6 +1,6 @@
 VPATH= src:src/headers
 libs= -lsfml-graphics -lsfml-window -lsfml-system
-objects= Main.o Engine.o Input.o Update.o Draw.o Pixel.o Snake.o Food.o HUD.o Menu.o
+objects= Main.o Engine.o Input.o Update.o Draw.o Pixel.o Snake.o Food.o HUD.o Menu.o DarkModeToggle.o
 
 all: $(objects)
 	g++ $^ -o Snake $(libs)
@@ -15,8 +15,9 @@ Snake.o: Snake.h
 Food.o: Food.h
 HUD.o: HUD.h
 Menu.o: Menu.h
+DarkModeToggle.o: DarkModeToggle.h
 
-Engine.h: Snake.h Food.h HUD.h Menu.h
+Engine.h: Snake.h Food.h HUD.h Menu.h DarkModeToggle.h
 	touch src/headers/Engine.h
 
 Snake.h: Pixel.h
