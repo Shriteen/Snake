@@ -104,6 +104,10 @@ void Engine::mainScreen()
                     window.close();
                     break;
                 
+                case sf::Event::Resized :
+                    adjustViews(event.size.width,event.size.height);
+                    break;
+                
                 case sf::Event::KeyPressed :
                     if(event.key.code == sf::Keyboard::Enter)
                     {
@@ -116,6 +120,13 @@ void Engine::mainScreen()
                     {
                         window.close();
                     }
+                    else if(event.key.code == sf::Keyboard::D)
+                    {
+                        if(scheme == colorScheme::light)
+                            setColorScheme(colorScheme::dark);
+                        else
+                            setColorScheme(colorScheme::light);
+                    }
                     else
                     {
                         menu.keyHandle(event);
@@ -123,18 +134,30 @@ void Engine::mainScreen()
                     break;
                     
                 case sf::Event::MouseButtonPressed :
-                    menu.mouseHandle(event,window);
-                    if(menu.getSelected() == "Start")
-                        return;
-                    else if(menu.getSelected() == "Exit")
-                        window.close();
+                    if(menu.mouseHandle(event,window))
+                    {
+                        if(menu.getSelected() == "Start")
+                            return;
+                        else if(menu.getSelected() == "Exit")
+                            window.close();
+                    }
+                    else if(schemeToggle.isClicked(event,window))
+                    {
+                        if(scheme == colorScheme::light)
+                            setColorScheme(colorScheme::dark);
+                        else
+                            setColorScheme(colorScheme::light);
+                    }
                     break;
             }
             
         }
         
+        schemeToggle.update(scheme);
+        
         window.clear(bgColor);
         menu.draw(window);
+        schemeToggle.draw(window);
         window.display();
     }
 }
@@ -155,5 +178,5 @@ void Engine::setColorScheme(colorScheme mode)
             //snake->setColor(sf::Color::White);
             break;
     }
-    
+    border.setOutlineColor(borderColor);
 }

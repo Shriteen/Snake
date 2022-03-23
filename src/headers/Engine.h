@@ -4,12 +4,11 @@
 #include "Food.h"
 #include "HUD.h"
 #include "Menu.h"
+#include "DarkModeToggle.h"
 
 class Engine
 {
-	private:
-		enum class colorScheme {light,dark};
-		
+	private:		
 		sf::RenderWindow window;
 		sf::Color bgColor;
 		sf::Color borderColor;
@@ -24,6 +23,7 @@ class Engine
 		bool playing;
 		Menu menu;
 		colorScheme scheme;
+		DarkModeToggle schemeToggle;
 		
 		void input();
 		void update(float interval);
@@ -31,7 +31,7 @@ class Engine
 		void adjustViews(int width,int height);
 		void mainScreen();
 		void setColorScheme(colorScheme mode);
-	public:
+	public:		
 		Engine();
 		~Engine();
 		void start();
