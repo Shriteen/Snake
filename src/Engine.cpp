@@ -36,32 +36,37 @@ Engine::~Engine()
 }
 
 void Engine::start()
-{
-    adjustViews(window.getSize().x,window.getSize().y);
-
-    mainScreen();
-    if(!window.isOpen())
-        return;
-    
-    snake=new Snake(((scheme==colorScheme::light)?sf::Color::Black : sf::Color::White),
-                    sf::Vector2i(1080/2,720/2));
-    
-    sf::Clock clock;    
-    update(1);
-    draw();
+{    
     while(window.isOpen())
     {
-        input();
+        view.setViewport(sf::FloatRect(0,0,1,1));
+        window.setView(view);
+        adjustViews(window.getSize().x,window.getSize().y);
         
-        sf::Time interval=clock.getElapsedTime();
+        mainScreen();
+        if(!window.isOpen())
+            return;        
         
-        if(interval.asSeconds() > 0.5)
-        {
-            update(interval.asSeconds());
-            clock.restart();
-        }
-        
+        snake=new Snake(((scheme==colorScheme::light)?sf::Color::Black : sf::Color::White),
+                    sf::Vector2i(1080/2,720/2));
+    
+        sf::Clock clock;    
+        update(1);
         draw();
+        while(window.isOpen() && snake->isAlive())
+        {
+            input();
+            
+            sf::Time interval=clock.getElapsedTime();
+            
+            if(interval.asSeconds() > 0.5)
+            {
+                update(interval.asSeconds());
+                clock.restart();
+            }
+            
+            draw();
+        }
     }
 }
 
