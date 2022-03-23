@@ -73,7 +73,9 @@ void Engine::start()
         
         draw();
     }
-
+    
+    delete snake;
+    snake=nullptr;
 }
 
 void Engine::adjustViews(int width,int height)
