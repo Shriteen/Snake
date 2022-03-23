@@ -11,10 +11,12 @@ class Menu
 	sf::Color fontColor;
 	float fontSize;
 	float vertPadding;
+	sf::FloatRect bounds;
 	int selected;
 
     public:
         Menu(std::vector<std::string> options,
+	     sf::FloatRect bounds,
 	     sf::Color fontColor,
 	     float fontSize);
 	void draw(sf::RenderWindow &window);

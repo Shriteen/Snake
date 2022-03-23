@@ -2,6 +2,7 @@
 #include<iostream>
 
 Menu::Menu(std::vector<std::string> options,
+           sf::FloatRect bounds,
            sf::Color fontColor,
            float fontSize)
 {
@@ -19,8 +20,8 @@ Menu::Menu(std::vector<std::string> options,
                                 fontSize) );
         this->options[i].setFillColor(fontColor);
         
-        this->options[i].setPosition( (1080 - this->options[i].getGlobalBounds().width )/2.0,
-                                      ((648-height)/2.0) + (i*fontSize) );
+        this->options[i].setPosition( bounds.left+((bounds.width - this->options[i].getGlobalBounds().width )/2.0),
+                                      bounds.top+((bounds.height-height)/2.0) + (i*fontSize) );
     }
     
     selected=0;

@@ -10,6 +10,7 @@ Engine::Engine():
     playing(true),
     snake(nullptr),
     menu(std::vector<std::string>{"Start","Exit"},
+         sf::FloatRect(0,0,1080,648),
          hudTextColor,
          50)
 {
