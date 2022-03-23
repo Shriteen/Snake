@@ -35,8 +35,8 @@ Engine::~Engine()
     delete food;
 }
 
-void Engine::start()
-{    
+void Engine::main()
+{
     while(window.isOpen())
     {
         view.setViewport(sf::FloatRect(0,0,1,1));
@@ -47,27 +47,33 @@ void Engine::start()
         if(!window.isOpen())
             return;        
         
-        snake=new Snake(((scheme==colorScheme::light)?sf::Color::Black : sf::Color::White),
-                    sf::Vector2i(1080/2,720/2));
-    
-        sf::Clock clock;    
-        update(1);
-        draw();
-        while(window.isOpen() && snake->isAlive())
-        {
-            input();
-            
-            sf::Time interval=clock.getElapsedTime();
-            
-            if(interval.asSeconds() > 0.5)
-            {
-                update(interval.asSeconds());
-                clock.restart();
-            }
-            
-            draw();
-        }
+        start();
     }
+}
+
+void Engine::start()
+{    
+    snake=new Snake(((scheme==colorScheme::light)?sf::Color::Black : sf::Color::White),
+                    sf::Vector2i(1080/2,720/2));
+
+    sf::Clock clock;    
+    update(1);
+    draw();
+    while(window.isOpen() && snake->isAlive())
+    {
+        input();
+        
+        sf::Time interval=clock.getElapsedTime();
+        
+        if(interval.asSeconds() > 0.5)
+        {
+            update(interval.asSeconds());
+            clock.restart();
+        }
+        
+        draw();
+    }
+
 }
 
 void Engine::adjustViews(int width,int height)

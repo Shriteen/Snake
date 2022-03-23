@@ -34,5 +34,6 @@ class Engine
 	public:		
 		Engine();
 		~Engine();
+		void main();
 		void start();
 };
