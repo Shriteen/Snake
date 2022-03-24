@@ -6,11 +6,12 @@ Menu::Menu(std::vector<std::string> options,
            sf::Color fontColor,
            float fontSize)
 {
-    font.loadFromFile("fonts/Coolville.ttf");
+    if(!font.loadFromFile("fonts/Coolville.ttf"))
+        std::cout<<"Font loading failed\n";
     this->fontSize=fontSize;
     this->fontColor=fontColor;
-    
-    int height = (options.size()*fontSize) + ((options.size()-1)*vertPadding);
+        
+    int height = (options.size()*fontSize);
     
     this->options.clear();
     for(int i=0; i<options.size(); i++)

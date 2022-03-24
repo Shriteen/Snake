@@ -10,7 +10,6 @@ class Menu
         sf::Font font;
 	sf::Color fontColor;
 	float fontSize;
-	float vertPadding;
 	sf::FloatRect bounds;
 	int selected;
 
