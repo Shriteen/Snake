@@ -5,6 +5,7 @@
 #include "HUD.h"
 #include "Menu.h"
 #include "DarkModeToggle.h"
+#include "GameOverDialogue.h"
 
 class Engine
 {
@@ -24,6 +25,8 @@ class Engine
 		Menu menu;
 		colorScheme scheme;
 		DarkModeToggle schemeToggle;
+		bool playAgain;
+		GameOverDialogue overDialogue;
 		
 		void input();
 		void update(float interval);
@@ -31,6 +34,7 @@ class Engine
 		void adjustViews(int width,int height);
 		void mainScreen();
 		void setColorScheme(colorScheme mode);
+		void gameOverDialogue();
 	public:		
 		Engine();
 		~Engine();

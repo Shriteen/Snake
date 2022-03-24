@@ -12,7 +12,9 @@ Engine::Engine():
     menu(std::vector<std::string>{"Start","Exit"},
          sf::FloatRect(0,0,1080,648),
          hudTextColor,
-         50)
+         50),
+    overDialogue(sf::FloatRect(0,0,1080,720),
+                 sf::Color::Magenta)
 {
     window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));
@@ -48,7 +50,10 @@ void Engine::main()
         if(!window.isOpen())
             return;        
         
-        start();
+        do
+        {
+            start();
+        }while(playAgain && window.isOpen());
     }
 }
 
@@ -74,6 +79,9 @@ void Engine::start()
         
         draw();
     }
+    
+    if(!snake->isAlive())
+        gameOverDialogue();
     
     delete snake;
     snake=nullptr;
@@ -193,4 +201,74 @@ void Engine::setColorScheme(colorScheme mode)
             break;
     }
     border.setOutlineColor(borderColor);
+}
+
+void Engine::gameOverDialogue()
+{
+    overDialogue.setScore(snake->getScore());
+    window.setView(view);    
+    
+    while(window.isOpen())
+    {
+        sf::Event event;
+        while(window.pollEvent(event))
+        {
+            switch(event.type)
+            {
+                case sf::Event::Closed :
+                    window.close();
+                    break;
+                
+                case sf::Event::Resized :
+                    adjustViews(event.size.width,event.size.height);
+                    break;
+                
+                case sf::Event::KeyPressed :
+                    if(event.key.code == sf::Keyboard::Enter)
+                    {
+                        if(overDialogue.getSelected() == "Play Again")
+                        {
+                            playAgain=true;
+                            return;
+                        }
+                        else if(overDialogue.getSelected() == "Exit To Menu")
+                        {
+                            playAgain=false;
+                            return;
+                        }
+                    }
+                    else if(event.key.code == sf::Keyboard::Escape)
+                    {
+                        playAgain=false;
+                        return;
+                    }
+                    else
+                    {
+                        overDialogue.keyHandle(event);
+                    }
+                    break;
+                    
+                case sf::Event::MouseButtonPressed :
+                    if(overDialogue.mouseHandle(event,window))
+                    {
+                        if(overDialogue.getSelected() == "Play Again")
+                        {
+                            playAgain=true;
+                            return;
+                        }
+                        else if(overDialogue.getSelected() == "Exit To Menu")
+                        {
+                            playAgain=false;
+                            return;
+                        }
+                    }
+                    break;
+            }
+            
+        }
+        
+        window.clear(bgColor);
+        overDialogue.draw(window);
+        window.display();
+    }
 }
