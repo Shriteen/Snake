@@ -14,6 +14,11 @@ void Engine::draw()
     window.setView(hudView);
     hud.draw(window);
     
+    if(!playing)
+    {
+        window.setView(view);
+        pauseMenu.draw(window);
+    }
     
     window.display();
 }

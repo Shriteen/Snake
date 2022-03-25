@@ -4,7 +4,7 @@
 Engine::Engine():
     window(sf::VideoMode(1080,720),"Snake"),
     foodColor(sf::Color::Red),
-    hudTextColor(sf::Color::Magenta),
+    hudTextColor(sf::Color(0,192,192)),
     border(sf::Vector2f(1080-(2*Pixel::size),720-(2*Pixel::size))),
     hud(hudTextColor),
     playing(true),
@@ -14,7 +14,10 @@ Engine::Engine():
          hudTextColor,
          50),
     overDialogue(sf::FloatRect(0,0,1080,720),
-                 sf::Color::Magenta)
+                 sf::Color(0,192,192)),
+    pauseMenu(sf::FloatRect(0,0,1080,720),
+                 sf::Color::White,
+                 sf::Color(0,192,192,192))
 {
     window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));
@@ -61,11 +64,15 @@ void Engine::start()
 {    
     snake=new Snake(((scheme==colorScheme::light)?sf::Color::Black : sf::Color::White),
                     sf::Vector2i(1080/2,720/2));
+    gameIsRunning=true;
+    playAgain=false;
+    playing=true;
 
     sf::Clock clock;    
     update(1);
     draw();
-    while(window.isOpen() && snake->isAlive())
+    
+    while(window.isOpen() && snake->isAlive() && gameIsRunning)
     {
         input();
         

@@ -6,6 +6,7 @@
 #include "Menu.h"
 #include "DarkModeToggle.h"
 #include "GameOverDialogue.h"
+#include "PauseMenu.h"
 
 class Engine
 {
@@ -27,6 +28,8 @@ class Engine
 		DarkModeToggle schemeToggle;
 		bool playAgain;
 		GameOverDialogue overDialogue;
+		bool gameIsRunning;
+		PauseMenu pauseMenu;
 		
 		void input();
 		void update(float interval);

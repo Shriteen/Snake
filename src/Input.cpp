@@ -47,6 +47,31 @@ void Engine::input()
                 {
                     playing=!playing;
                 }
+                else if(!playing)
+                {
+                    if(event.key.code == sf::Keyboard::Enter)
+                    {
+                        if(pauseMenu.getSelected() == "Resume")
+                        {
+                            playing=true;
+                            return;
+                        }
+                        else if(pauseMenu.getSelected() == "Restart")
+                        {
+                            playAgain=true;
+                            gameIsRunning=false;
+                            return;
+                        }
+                        else if(pauseMenu.getSelected() == "Exit To Menu")
+                        {
+                            playAgain=false;
+                            gameIsRunning=false;
+                            return;
+                        }
+                    }
+                    else
+                        pauseMenu.keyHandle(event);
+                }
                 break;
             
             case sf::Event::MouseButtonPressed :
@@ -55,6 +80,26 @@ void Engine::input()
                 if(hud.getPauseOrPlayButtonBounds().contains( window.mapPixelToCoords(sf::Vector2i(x,y),hudView ) ))
                 {
                     playing=!playing;
+                }
+                else if(!playing && pauseMenu.mouseHandle(event,window))
+                {
+                    if(pauseMenu.getSelected() == "Resume")
+                        {
+                            playing=true;
+                            return;
+                        }
+                        else if(pauseMenu.getSelected() == "Restart")
+                        {
+                            playAgain=true;
+                            gameIsRunning=false;
+                            return;
+                        }
+                        else if(pauseMenu.getSelected() == "Exit To Menu")
+                        {
+                            playAgain=false;
+                            gameIsRunning=false;
+                            return;
+                        }
                 }
                 break;
                 
