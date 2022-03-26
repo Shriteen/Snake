@@ -37,6 +37,8 @@ Engine::Engine():
     gulpSound.setBuffer(gulpSoundBuffer);
     gameOverSoundBuffer.loadFromFile("sounds/gameOverFX.flac");
     gameOverSound.setBuffer(gameOverSoundBuffer);
+    changeSchemeSoundBuffer.loadFromFile("sounds/schemeToggleFX.flac");
+    changeSchemeSound.setBuffer(changeSchemeSoundBuffer);
     
 }
 
@@ -160,6 +162,8 @@ void Engine::mainScreen()
                             setColorScheme(colorScheme::dark);
                         else
                             setColorScheme(colorScheme::light);
+                        if(soundOn)
+                            changeSchemeSound.play();
                     }
                     else
                     {
@@ -181,6 +185,8 @@ void Engine::mainScreen()
                             setColorScheme(colorScheme::dark);
                         else
                             setColorScheme(colorScheme::light);
+                        if(soundOn)
+                            changeSchemeSound.play();
                     }
                     break;
             }

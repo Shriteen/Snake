@@ -36,6 +36,8 @@ class Engine
 		sf::Sound gulpSound;
 		sf::SoundBuffer gameOverSoundBuffer;
 		sf::Sound gameOverSound;
+		sf::SoundBuffer changeSchemeSoundBuffer;
+		sf::Sound changeSchemeSound;
 		
 		void input();
 		void update(float interval);
