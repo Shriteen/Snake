@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Snake.h"
 #include "Food.h"
 #include "HUD.h"
@@ -30,6 +31,9 @@ class Engine
 		GameOverDialogue overDialogue;
 		bool gameIsRunning;
 		PauseMenu pauseMenu;
+		bool soundOn;
+		sf::SoundBuffer gulpSoundBuffer;
+		sf::Sound gulpSound;
 		
 		void input();
 		void update(float interval);

@@ -1,5 +1,5 @@
 VPATH= src:src/headers
-libs= -lsfml-graphics -lsfml-window -lsfml-system
+libs= -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 objects= Main.o Engine.o Input.o Update.o Draw.o Pixel.o Snake.o Food.o HUD.o Menu.o DarkModeToggle.o GameOverDialogue.o PauseMenu.o
 
 all: $(objects)

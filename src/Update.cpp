@@ -21,6 +21,8 @@ void Engine::update(float interval)
             delete food;
             food =new Food(border.getGlobalBounds(),foodColor);
             (*snake)++;
+            if(soundOn)
+                gulpSound.play();
         }
         food->update();
     }    

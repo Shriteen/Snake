@@ -17,7 +17,8 @@ Engine::Engine():
                  sf::Color(0,192,192)),
     pauseMenu(sf::FloatRect(0,0,1080,720),
                  sf::Color::White,
-                 sf::Color(0,192,192,192))
+                 sf::Color(0,192,192,192)),
+    soundOn(true)
 {
     window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));
@@ -32,6 +33,8 @@ Engine::Engine():
     
     food=new Food(border.getGlobalBounds(),foodColor);
     
+    gulpSoundBuffer.loadFromFile("sounds/eatingFX.flac");
+    gulpSound.setBuffer(gulpSoundBuffer);
     
 }
 
