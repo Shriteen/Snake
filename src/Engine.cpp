@@ -35,6 +35,8 @@ Engine::Engine():
     
     gulpSoundBuffer.loadFromFile("sounds/eatingFX.flac");
     gulpSound.setBuffer(gulpSoundBuffer);
+    gameOverSoundBuffer.loadFromFile("sounds/gameOverFX.flac");
+    gameOverSound.setBuffer(gameOverSoundBuffer);
     
 }
 
@@ -215,6 +217,9 @@ void Engine::setColorScheme(colorScheme mode)
 
 void Engine::gameOverDialogue()
 {
+    if(soundOn)
+        gameOverSound.play();
+    
     overDialogue.setScore(snake->getScore());
     window.setView(view);    
     
