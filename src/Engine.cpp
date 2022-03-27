@@ -19,7 +19,8 @@ Engine::Engine():
                  sf::Color(0,192,192)),
     pauseMenu(sf::FloatRect(0,0,1080,720),
                  sf::Color::White,
-                 sf::Color(0,192,192,192))
+                 sf::Color(0,192,192,192)),
+    soundToggle(sf::Color(0,192,192))
 {
     window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));
@@ -172,6 +173,10 @@ void Engine::mainScreen()
                         if(soundOn)
                             changeSchemeSound.play();
                     }
+                    else if(event.key.code == sf::Keyboard::S)
+                    {
+                        soundOn=!soundOn;
+                    }
                     else
                     {
                         menu.keyHandle(event);
@@ -195,16 +200,22 @@ void Engine::mainScreen()
                         if(soundOn)
                             changeSchemeSound.play();
                     }
+                    else if(soundToggle.isClicked(event,window))
+                    {
+                        soundOn=!soundOn;
+                    }
                     break;
             }
             
         }
         
         schemeToggle.update(scheme);
+        soundToggle.update(soundOn);
         
         window.clear(bgColor);
         menu.draw(window);
         schemeToggle.draw(window);
+        soundToggle.draw(window);
         window.display();
     }
 }

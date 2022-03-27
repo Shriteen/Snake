@@ -8,6 +8,7 @@
 #include "DarkModeToggle.h"
 #include "GameOverDialogue.h"
 #include "PauseMenu.h"
+#include "SoundToggle.h"
 
 extern bool soundOn;
 
@@ -41,6 +42,7 @@ class Engine
 		sf::Sound changeSchemeSound;
 		sf::SoundBuffer selectOptionSoundBuffer;
         sf::Sound selectOptionSound;
+		SoundToggle soundToggle;
 		
 		void input();
 		void update(float interval);
