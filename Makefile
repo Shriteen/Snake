@@ -1,6 +1,6 @@
 VPATH= src:src/headers
 libs= -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-objects= Main.o Engine.o Input.o Update.o Draw.o Pixel.o Snake.o Food.o HUD.o Menu.o DarkModeToggle.o GameOverDialogue.o PauseMenu.o
+objects= Main.o Engine.o Input.o Update.o Draw.o Pixel.o Snake.o Food.o HUD.o Menu.o DarkModeToggle.o GameOverDialogue.o PauseMenu.o SoundToggle.o
 
 all: $(objects)
 	g++ $^ -o Snake $(libs)
@@ -18,8 +18,9 @@ Menu.o: Menu.h
 DarkModeToggle.o: DarkModeToggle.h
 GameOverDialogue.o: GameOverDialogue.h
 PauseMenu.o: PauseMenu.h
+SoundToggle.o: SoundToggle.h
 
-Engine.h: Snake.h Food.h HUD.h Menu.h DarkModeToggle.h GameOverDialogue.h PauseMenu.h
+Engine.h: Snake.h Food.h HUD.h Menu.h DarkModeToggle.h GameOverDialogue.h PauseMenu.h SoundToggle.h
 	touch src/headers/Engine.h
 
 Snake.h: Pixel.h
