@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+extern bool soundOn;
+
 class Menu
 {
     private:
@@ -15,6 +17,8 @@ class Menu
         int selected;
         sf::SoundBuffer changeOptionSoundBuffer;
         sf::Sound changeOptionSound;
+        sf::SoundBuffer selectOptionSoundBuffer;
+        sf::Sound selectOptionSound;
 
     public:
         Menu(std::vector<std::string> options,

@@ -9,6 +9,8 @@
 #include "GameOverDialogue.h"
 #include "PauseMenu.h"
 
+extern bool soundOn;
+
 class Engine
 {
 	private:		
@@ -31,13 +33,14 @@ class Engine
 		GameOverDialogue overDialogue;
 		bool gameIsRunning;
 		PauseMenu pauseMenu;
-		bool soundOn;
 		sf::SoundBuffer gulpSoundBuffer;
 		sf::Sound gulpSound;
 		sf::SoundBuffer gameOverSoundBuffer;
 		sf::Sound gameOverSound;
 		sf::SoundBuffer changeSchemeSoundBuffer;
 		sf::Sound changeSchemeSound;
+		sf::SoundBuffer selectOptionSoundBuffer;
+        sf::Sound selectOptionSound;
 		
 		void input();
 		void update(float interval);

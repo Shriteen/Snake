@@ -29,6 +29,8 @@ Menu::Menu(std::vector<std::string> options,
     
     changeOptionSoundBuffer.loadFromFile("sounds/changeOptionFX.flac");
     changeOptionSound.setBuffer(changeOptionSoundBuffer);
+    selectOptionSoundBuffer.loadFromFile("sounds/selectFX.flac");
+    selectOptionSound.setBuffer(selectOptionSoundBuffer);
 
 }
 
@@ -61,7 +63,8 @@ void Menu::keyHandle(sf::Event &event)
                     selected= options.size()-1;
                 else
                     selected--;
-                changeOptionSound.play();
+                if(soundOn)
+                    changeOptionSound.play();
                 break;
             case sf::Keyboard::Down :
             case sf::Keyboard::Right :
@@ -69,7 +72,8 @@ void Menu::keyHandle(sf::Event &event)
                     selected= 0;
                 else
                     selected++;
-                changeOptionSound.play();
+                if(soundOn)
+                    changeOptionSound.play();
                 break;
         }
     }
@@ -86,8 +90,10 @@ bool Menu::mouseHandle(sf::Event &event,sf::RenderWindow &window)
         {
            if(options[i].getGlobalBounds().contains( window.mapPixelToCoords(sf::Vector2i(x,y) ) ))
            {
-               selected=i;
-               return true;
+                selected=i;
+                if(soundOn)
+                    selectOptionSound.play();
+                return true;
            }
            
         }

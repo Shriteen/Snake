@@ -51,6 +51,8 @@ void Engine::input()
                 {
                     if(event.key.code == sf::Keyboard::Enter)
                     {
+                        if(soundOn)
+                            selectOptionSound.play();
                         if(pauseMenu.getSelected() == "Resume")
                         {
                             playing=true;

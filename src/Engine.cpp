@@ -1,6 +1,8 @@
 #include "headers/Engine.h"
 #include<iostream>
 
+bool soundOn;
+
 Engine::Engine():
     window(sf::VideoMode(1080,720),"Snake"),
     foodColor(sf::Color::Red),
@@ -17,8 +19,7 @@ Engine::Engine():
                  sf::Color(0,192,192)),
     pauseMenu(sf::FloatRect(0,0,1080,720),
                  sf::Color::White,
-                 sf::Color(0,192,192,192)),
-    soundOn(true)
+                 sf::Color(0,192,192,192))
 {
     window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));
@@ -33,12 +34,16 @@ Engine::Engine():
     
     food=new Food(border.getGlobalBounds(),foodColor);
     
+    soundOn=true;
+    
     gulpSoundBuffer.loadFromFile("sounds/eatingFX.flac");
     gulpSound.setBuffer(gulpSoundBuffer);
     gameOverSoundBuffer.loadFromFile("sounds/gameOverFX.flac");
     gameOverSound.setBuffer(gameOverSoundBuffer);
     changeSchemeSoundBuffer.loadFromFile("sounds/schemeToggleFX.flac");
     changeSchemeSound.setBuffer(changeSchemeSoundBuffer);
+    selectOptionSoundBuffer.loadFromFile("sounds/selectFX.flac");
+    selectOptionSound.setBuffer(selectOptionSoundBuffer);
     
 }
 
@@ -147,6 +152,8 @@ void Engine::mainScreen()
                 case sf::Event::KeyPressed :
                     if(event.key.code == sf::Keyboard::Enter)
                     {
+                        if(soundOn)
+                            selectOptionSound.play();
                         if(menu.getSelected() == "Start")
                             return;
                         else if(menu.getSelected() == "Exit")
@@ -247,6 +254,8 @@ void Engine::gameOverDialogue()
                 case sf::Event::KeyPressed :
                     if(event.key.code == sf::Keyboard::Enter)
                     {
+                        if(soundOn)
+                            selectOptionSound.play();
                         if(overDialogue.getSelected() == "Play Again")
                         {
                             playAgain=true;
