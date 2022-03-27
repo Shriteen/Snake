@@ -26,6 +26,10 @@ Menu::Menu(std::vector<std::string> options,
     }
     
     selected=0;
+    
+    changeOptionSoundBuffer.loadFromFile("sounds/changeOptionFX.flac");
+    changeOptionSound.setBuffer(changeOptionSoundBuffer);
+
 }
 
 void Menu::draw(sf::RenderWindow &window)
@@ -57,6 +61,7 @@ void Menu::keyHandle(sf::Event &event)
                     selected= options.size()-1;
                 else
                     selected--;
+                changeOptionSound.play();
                 break;
             case sf::Keyboard::Down :
             case sf::Keyboard::Right :
@@ -64,6 +69,7 @@ void Menu::keyHandle(sf::Event &event)
                     selected= 0;
                 else
                     selected++;
+                changeOptionSound.play();
                 break;
         }
     }
