@@ -46,6 +46,8 @@ void Engine::input()
                    event.key.code == sf::Keyboard::Escape )
                 {
                     playing=!playing;
+                    if(soundOn)
+                        selectOptionSound.play();
                 }
                 else if(!playing)
                 {
@@ -82,6 +84,8 @@ void Engine::input()
                 if(hud.getPauseOrPlayButtonBounds().contains( window.mapPixelToCoords(sf::Vector2i(x,y),hudView ) ))
                 {
                     playing=!playing;
+                    if(soundOn)
+                        selectOptionSound.play();
                 }
                 else if(!playing && pauseMenu.mouseHandle(event,window))
                 {
