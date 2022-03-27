@@ -40,7 +40,7 @@ Engine::Engine():
     gulpSound.setBuffer(gulpSoundBuffer);
     gameOverSoundBuffer.loadFromFile("sounds/gameOverFX.flac");
     gameOverSound.setBuffer(gameOverSoundBuffer);
-    changeSchemeSoundBuffer.loadFromFile("sounds/schemeToggleFX.flac");
+    changeSchemeSoundBuffer.loadFromFile("sounds/schemeToggleFX.wav");
     changeSchemeSound.setBuffer(changeSchemeSoundBuffer);
     selectOptionSoundBuffer.loadFromFile("sounds/selectFX.flac");
     selectOptionSound.setBuffer(selectOptionSoundBuffer);
