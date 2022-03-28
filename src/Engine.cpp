@@ -91,7 +91,7 @@ void Engine::start()
         
         sf::Time interval=clock.getElapsedTime();
         
-        if(interval.asSeconds() > 0.5)
+        if(interval.asMilliseconds() > int(difficulty::easy))
         {
             update(interval.asSeconds());
             clock.restart();

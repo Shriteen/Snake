@@ -15,6 +15,8 @@ extern bool soundOn;
 class Engine
 {
 	private:		
+		enum class difficulty{easy=500,medium=350,hard=150};
+	
 		sf::RenderWindow window;
 		sf::Color bgColor;
 		sf::Color borderColor;
