@@ -11,7 +11,7 @@ Engine::Engine():
     hud(hudTextColor),
     playing(true),
     snake(nullptr),
-    menu(std::vector<std::string>{"Start","Exit"},
+    menu(std::vector<std::string>{"Start","Difficulty","Exit"},
          sf::FloatRect(0,0,1080,648),
          hudTextColor,
          50),
@@ -20,7 +20,10 @@ Engine::Engine():
     pauseMenu(sf::FloatRect(0,0,1080,720),
                  sf::Color::White,
                  sf::Color(0,192,192,192)),
-    soundToggle(sf::Color(0,192,192))
+    soundToggle(sf::Color(0,192,192)),
+    changeDifficultySubMenu(sf::FloatRect(0,0,1080,648),
+                            hudTextColor),
+    difficulty(Difficulty::easy)
 {
     window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));
@@ -91,7 +94,7 @@ void Engine::start()
         
         sf::Time interval=clock.getElapsedTime();
         
-        if(interval.asMilliseconds() > int(difficulty::easy))
+        if(interval.asMilliseconds() > int(difficulty))
         {
             update(interval.asSeconds());
             clock.restart();
@@ -157,6 +160,8 @@ void Engine::mainScreen()
                             selectOptionSound.play();
                         if(menu.getSelected() == "Start")
                             return;
+                        else if(menu.getSelected() == "Difficulty")
+                            changeDifficultySubMenuShow();
                         else if(menu.getSelected() == "Exit")
                             window.close();
                     }
@@ -188,6 +193,8 @@ void Engine::mainScreen()
                     {
                         if(menu.getSelected() == "Start")
                             return;
+                        else if(menu.getSelected() == "Difficulty")
+                            changeDifficultySubMenuShow();
                         else if(menu.getSelected() == "Exit")
                             window.close();
                     }
@@ -310,6 +317,84 @@ void Engine::gameOverDialogue()
         
         window.clear(bgColor);
         overDialogue.draw(window);
+        window.display();
+    }
+}
+
+void Engine::changeDifficultySubMenuShow()
+{
+    while(window.isOpen())
+    {
+        sf::Event event;
+        while(window.pollEvent(event))
+        {
+            switch(event.type)
+            {
+                case sf::Event::Closed :
+                    window.close();
+                    break;
+                
+                case sf::Event::Resized :
+                    adjustViews(event.size.width,event.size.height);
+                    break;
+                
+                case sf::Event::KeyPressed :
+                    if(event.key.code == sf::Keyboard::Enter)
+                    {
+                        if(soundOn)
+                            selectOptionSound.play();
+                        if(changeDifficultySubMenu.getSelected() == "Easy")
+                        {
+                            difficulty=Difficulty::easy;
+                            return;
+                        }
+                        else if(changeDifficultySubMenu.getSelected() == "Medium")
+                        {
+                            difficulty=Difficulty::medium;
+                            return;
+                        }
+                        else if(changeDifficultySubMenu.getSelected() == "Hard")
+                        {
+                            difficulty=Difficulty::hard;
+                            return;
+                        }
+                    }
+                    else if(event.key.code == sf::Keyboard::Escape)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        changeDifficultySubMenu.keyHandle(event);
+                    }
+                    break;
+                    
+                case sf::Event::MouseButtonPressed :
+                    if(changeDifficultySubMenu.mouseHandle(event,window))
+                    {
+                        if(changeDifficultySubMenu.getSelected() == "Easy")
+                        {
+                            difficulty=Difficulty::easy;
+                            return;
+                        }
+                        else if(changeDifficultySubMenu.getSelected() == "Medium")
+                        {
+                            difficulty=Difficulty::medium;
+                            return;
+                        }
+                        else if(changeDifficultySubMenu.getSelected() == "Hard")
+                        {
+                            difficulty=Difficulty::hard;
+                            return;
+                        }
+                    }
+                    break;
+            }
+            
+        }
+        
+        window.clear(bgColor);
+        changeDifficultySubMenu.draw(window);
         window.display();
     }
 }

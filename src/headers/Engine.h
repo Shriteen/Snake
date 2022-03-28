@@ -9,13 +9,14 @@
 #include "GameOverDialogue.h"
 #include "PauseMenu.h"
 #include "SoundToggle.h"
+#include "ChangeDifficultySubmenu.h"
 
 extern bool soundOn;
 
 class Engine
 {
 	private:		
-		enum class difficulty{easy=500,medium=350,hard=150};
+		enum class Difficulty{easy=400,medium=250,hard=100};
 	
 		sf::RenderWindow window;
 		sf::Color bgColor;
@@ -45,6 +46,9 @@ class Engine
 		sf::SoundBuffer selectOptionSoundBuffer;
         sf::Sound selectOptionSound;
 		SoundToggle soundToggle;
+		Difficulty difficulty;
+		ChangeDifficultySubmenu changeDifficultySubMenu;
+		void changeDifficultySubMenuShow();
 		
 		void input();
 		void update(float interval);
