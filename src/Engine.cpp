@@ -12,7 +12,7 @@ Engine::Engine():
     playing(true),
     snake(nullptr),
     menu(std::vector<std::string>{"Start","Difficulty","Exit"},
-         sf::FloatRect(0,0,1080,648),
+         sf::FloatRect(0,0,1080,720),
          hudTextColor,
          50),
     overDialogue(sf::FloatRect(0,0,1080,720),
@@ -23,7 +23,8 @@ Engine::Engine():
     soundToggle(sf::Color(0,192,192)),
     changeDifficultySubMenu(sf::FloatRect(0,0,1080,648),
                             hudTextColor),
-    difficulty(Difficulty::easy)
+    difficulty(Difficulty::easy),
+    isFullScreen(false)
 {
     window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0,0,1080,720));
@@ -77,7 +78,7 @@ void Engine::main()
 }
 
 void Engine::start()
-{    
+{
     snake=new Snake(((scheme==colorScheme::light)?sf::Color::Black : sf::Color::White),
                     sf::Vector2i(1080/2,720/2));
     gameIsRunning=true;
@@ -182,6 +183,17 @@ void Engine::mainScreen()
                     {
                         soundOn=!soundOn;
                     }
+                    else if(event.key.code == sf::Keyboard::F11)
+                    {
+                        isFullScreen=!isFullScreen;
+                        if(isFullScreen)
+                            window.create(sf::VideoMode::getDesktopMode(),"Snake",sf::Style::Fullscreen);
+                        else
+                            window.create(sf::VideoMode(1080,720),"Snake");
+                        if(soundOn)
+                            selectOptionSound.play();
+                        window.setFramerateLimit(60);
+                    }
                     else
                     {
                         menu.keyHandle(event);
@@ -211,18 +223,36 @@ void Engine::mainScreen()
                     {
                         soundOn=!soundOn;
                     }
+                    else if(fullscreenToggle.isClicked(event,window))
+                    {
+                        isFullScreen=!isFullScreen;
+                        if(isFullScreen)
+                            window.create(sf::VideoMode::getDesktopMode(),"Snake",sf::Style::Fullscreen);
+                        else
+                            window.create(sf::VideoMode(1080,720),"Snake");
+                        if(soundOn)
+                            selectOptionSound.play();
+                        window.setFramerateLimit(60);
+                    }
                     break;
             }
             
         }
         
+        adjustViews(973,648);
+        
         schemeToggle.update(scheme);
         soundToggle.update(soundOn);
+        fullscreenToggle.update(isFullScreen);
         
         window.clear(bgColor);
+        
+        window.setView(view);
         menu.draw(window);
         schemeToggle.draw(window);
         soundToggle.draw(window);
+        fullscreenToggle.draw(window);
+        
         window.display();
     }
 }
@@ -393,6 +423,7 @@ void Engine::changeDifficultySubMenuShow()
             
         }
         
+        window.setView(view);
         window.clear(bgColor);
         changeDifficultySubMenu.draw(window);
         window.display();

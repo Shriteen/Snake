@@ -10,6 +10,7 @@
 #include "PauseMenu.h"
 #include "SoundToggle.h"
 #include "ChangeDifficultySubmenu.h"
+#include "FullscreenToggle.h"
 
 extern bool soundOn;
 
@@ -48,7 +49,8 @@ class Engine
 		SoundToggle soundToggle;
 		Difficulty difficulty;
 		ChangeDifficultySubmenu changeDifficultySubMenu;
-		void changeDifficultySubMenuShow();
+		FullscreenToggle fullscreenToggle;
+		bool isFullScreen;
 		
 		void input();
 		void update(float interval);
@@ -57,6 +59,7 @@ class Engine
 		void mainScreen();
 		void setColorScheme(colorScheme mode);
 		void gameOverDialogue();
+		void changeDifficultySubMenuShow();
 	public:		
 		Engine();
 		~Engine();
