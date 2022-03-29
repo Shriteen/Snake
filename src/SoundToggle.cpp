@@ -4,7 +4,7 @@ SoundToggle::SoundToggle(sf::Color activeColor)
 {
     toOff.loadFromFile("images/to_sound_off.png");
     toOn.loadFromFile("images/to_sound_on.png");
-    sprite.setPosition(sf::Vector2f(1005,25));
+    sprite.setPosition(sf::Vector2f(1005,5));
     
     this->activeColor=activeColor;
 }

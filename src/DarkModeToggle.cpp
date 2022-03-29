@@ -4,7 +4,7 @@ DarkModeToggle::DarkModeToggle()
 {
     toLight.loadFromFile("images/to_light.png");
     toDark.loadFromFile("images/to_dark.png");
-    sprite.setPosition(sf::Vector2f(25,25));
+    sprite.setPosition(sf::Vector2f(25,5));
 }
 
 void DarkModeToggle::update(colorScheme scheme)
