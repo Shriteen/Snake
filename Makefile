@@ -5,22 +5,10 @@ objects= Main.o Engine.o Input.o Update.o Draw.o Pixel.o Snake.o Food.o HUD.o Me
 all: $(objects)
 	g++ $^ -o Snake $(libs)
 
-Main.o:  Engine.h
-Engine.o:  Engine.h
+
 Input.o: Engine.h
 Update.o: Engine.h
 Draw.o: Engine.h
-Pixel.o: Pixel.h 
-Snake.o: Snake.h
-Food.o: Food.h
-HUD.o: HUD.h
-Menu.o: Menu.h
-DarkModeToggle.o: DarkModeToggle.h
-GameOverDialogue.o: GameOverDialogue.h
-PauseMenu.o: PauseMenu.h
-SoundToggle.o: SoundToggle.h
-ChangeDifficultySubmenu.o: ChangeDifficultySubmenu.h
-FullscreenToggle.o: FullscreenToggle.h
 
 Engine.h: Snake.h Food.h HUD.h Menu.h DarkModeToggle.h GameOverDialogue.h PauseMenu.h SoundToggle.h ChangeDifficultySubmenu.h FullscreenToggle.h
 	touch src/headers/Engine.h
@@ -43,8 +31,12 @@ PauseMenu.h: Menu.h
 ChangeDifficultySubmenu.h: Menu.h
 	touch src/headers/ChangeDifficultySubmenu.h
 
-%.o: %.cpp
+%.o: %.cpp %.h
 	g++ $< -c
+
+%.o: %.cpp 
+	g++ $< -c
+
 
 .PHONY: clean
 
