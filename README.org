@@ -1,0 +1,14 @@
+#+TITLE:Classic Snake Game
+
+An implementation of classic snake game in c++ using SFML
+
+* A classic experience
+[[file:screenshots/classic.png]]
+* Intriguing Gameplay
+[[file:screenshots/gameplay.png]]
+* Various Difficulty Levels
+[[file:screenshots/difficulty.png]]
+* Supports Dark Mode!
+[[file:screenshots/dark.png]]
+* Pixel art graphics with fun sound effects and more!
+[[file:screenshots/pixelart.png]]
